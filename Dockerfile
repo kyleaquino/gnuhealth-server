@@ -14,8 +14,8 @@ RUN pip install gnuhealth-all-modules --use-pep517
 
 # Install Tryton SAO
 RUN wget https://downloads.tryton.org/5.0/tryton-sao-5.0.0.tgz
-RUN tar -xf tryton-sao-5.0.0.tgz && cd package
-RUN npm install --production --legacy-peer-deps
+#RUN tar -xf tryton-sao-5.0.0.tgz && cd package
+#RUN npm install --production --legacy-peer-deps
 
 EXPOSE 80
 CMD ["ls"]
