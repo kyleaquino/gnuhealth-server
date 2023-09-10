@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 RUN apt-get update
 RUN apt-get install -y apt-get -y install python-setuptools python-dev libldap2-dev \
