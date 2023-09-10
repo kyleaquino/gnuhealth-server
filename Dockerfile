@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get -y install python3-pip python3-dev postgresql \
         postgresql-contrib libpq-dev libxml2-dev libxslt1-dev libsasl2-dev libldap2-dev python3-pyldap \
         python3-biopython python3-psycopg2 python3-pydot python3-pyqt5 python3-pyqt5.qtsql python3-pyqt5.qtsvg \
-        python3-pyqt5.qtwebkit python3-pyqt5.qtopengl python3-matplotlib python3-pycairo python3-pyparsing \
+        python3-pyqt5.qtwebkit python3-pyqt5.qtopengl python3-matplotlib python3-pyparsing \
         python3-ldap python3-reportlab python3-docutils python3-polib python3-genshi python3-pygments \
         python3-psutil python3-openpyxl python3-gi python3-cairocffi python3-pil python3-dateutil \
         python3-vobject python3-requests python3-babel python3-openssl python3-psutil python3-setuptools \
@@ -17,11 +17,10 @@ RUN apt-get update && apt-get -y install python3-pip python3-dev postgresql \
         python3-pytest-runner python3-markupsafe python3-mako python3-unittest2 python3-defusedxml \
         python3-odf python3-sqlalchemy python3-zope.interface python3-ofxparse python3-psycogreen \
         python3-lxml python3-num2words python3-pyPdf python3-uno python3-rdflib python3-dateutil \
-        python3-mock python3-dns python3-vatnumber python3-pip python3-pyldap python3-gi-cairo \
-        python3-cairo
+        python3-mock python3-dns python3-vatnumber python3-pip python3-pyldap python3-gi-cairo
 
 # Install GNU Health
-RUN pip3 install gnuhealth
+RUN pip install pycairo gnuhealth
 
 # Expose the necessary ports (adjust as needed)
 EXPOSE 80
