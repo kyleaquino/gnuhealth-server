@@ -19,4 +19,5 @@ RUN wget https://ftp.gnu.org/gnu/health/gnuhealth-latest.tar.gz
 RUN tar -xf gnuhealth-latest.tar.gz && cd gnuhealth-4.2.1 && ./gnuhealth-setup install
 
 EXPOSE 8000
-ENTRYPOINT ["./start_gnuhealth.sh"]
+ENTRYPOINT ["/gnuhealth-4.2.1/start_gnuhealth.sh"]
+CMD ["sh"]
