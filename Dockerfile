@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
 RUN apt-get update
-RUN apt-get install -y software-properties-common wget
+RUN apt-get install -y software-properties-common python-pip
 RUN pip install gnuhealth
 
 EXPOSE 80
