@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
-WORKDIR /home
-COPY start.sh ./start.sh
+WORKDIR /home/gnuhealth
+COPY start.sh /home/gnuhealth/start.sh
 
 # Ubuntu General Packages
 RUN apt-get update
