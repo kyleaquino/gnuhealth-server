@@ -1,1 +1,1 @@
-# gnuhealth-server
+# GNUHealth Server
