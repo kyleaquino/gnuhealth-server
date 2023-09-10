@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
 RUN apt-get update
-RUN apt-get install -y software-properties-common python3-dev python3-pip libpq-dev 
+RUN apt-get install -y software-properties-common node npm python3-dev python3-pip libpq-dev 
 RUN pip install gnuhealth-all-modules --use-pep517
 
 EXPOSE 80
