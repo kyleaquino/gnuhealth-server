@@ -14,7 +14,7 @@ WORKDIR /home/gnuhealth
 
 # Setup GNUHealth Server
 RUN wget https://ftp.gnu.org/gnu/health/gnuhealth-latest.tar.gz
-RUN tar -xf gnuhealth-latest.tar.gz && cd gnuhealth-4.2.1 && ./gnuhealth-setup
+RUN tar -xf gnuhealth-latest.tar.gz && cd gnuhealth-4.2.1 && ./gnuhealth-setup install
 
 # Install Tryton SAO
 RUN wget https://downloads.tryton.org/5.0/tryton-sao-5.0.0.tgz
