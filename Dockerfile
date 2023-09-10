@@ -4,7 +4,7 @@ WORKDIR /home/gnuhealth
 
 # Ubuntu General Packages
 RUN apt-get update
-RUN apt-get install -y software-properties-common libpq-dev curl wget gcc g++ make git
+RUN apt-get install -y software-properties-common libpq-dev curl wget gcc g++ make git nano
 
 # Install Framework Dependencies
 RUN apt-get install -y nodejs npm python3-dev python3-pip python3-cffi
