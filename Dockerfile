@@ -4,7 +4,7 @@ WORKDIR /home/gnuhealth
 
 # Ubuntu General Packages
 RUN apt-get update
-RUN apt-get install -y software-properties-common libpq-dev curl wget gcc g++ make git nano
+RUN apt-get install -y software-properties-common libpq-dev curl wget gcc g++ make git nano vim
 
 # Install Framework Dependencies
 RUN apt-get install -y nodejs npm python3-dev python3-pip python3-cffi
@@ -18,4 +18,4 @@ RUN wget https://ftp.gnu.org/gnu/health/gnuhealth-latest.tar.gz
 RUN tar -xf gnuhealth-latest.tar.gz && cd gnuhealth-4.2.1 && ./gnuhealth-setup install
 
 EXPOSE 8000
-ENTRYPOINT ["./home/gnuhealth/gnuhealth-4.2.1/start_gnuhealth.sh"]
+ENTRYPOINT ["./start_gnuhealth.sh"]
