@@ -17,7 +17,7 @@ RUN apt-get update && apt-get -y install python3-pip python3-dev postgresql \
         python3-pytest-runner python3-markupsafe python3-mako python3-unittest2 python3-defusedxml \
         python3-odf python3-sqlalchemy python3-zope.interface python3-ofxparse python3-psycogreen \
         python3-lxml python3-num2words python3-pyPdf python3-uno python3-rdflib python3-dateutil \
-        python3-mock python3-dns python3-vatnumber python3-pip python3-pyldap python3-gi-cairo
+        python3-mock python3-dns python3-vatnumber python3-pip python3-pyldap
 
 # Install GNU Health
 RUN pip install pycairo gnuhealth
