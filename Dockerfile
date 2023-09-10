@@ -1,6 +1,7 @@
 FROM ubuntu:22.04
 
 WORKDIR /home
+COPY start.sh ./start.sh
 
 # Ubuntu General Packages
 RUN apt-get update
