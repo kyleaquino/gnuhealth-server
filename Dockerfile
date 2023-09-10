@@ -9,7 +9,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
 RUN apt-get install -y nodejs
 
 # Install Gnuhealth Server
-RUN apt-get install python3-dev python3-pip python3-cffi
+RUN apt-get install -y python3-dev python3-pip python3-cffi
 RUN pip install gnuhealth-all-modules --use-pep517
 
 # Install Tryton SAO
