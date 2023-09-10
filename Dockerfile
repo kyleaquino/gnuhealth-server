@@ -15,7 +15,7 @@ RUN tar -xf tryton-sao-5.0.0.tgz && cd package && npm install --production --leg
 
 # Setup GNUHealth Server
 RUN wget https://ftp.gnu.org/gnu/health/gnuhealth-latest.tar.gz 
-RUN tar -xf gnuhealth-latest.tar.gz && ./home/gnuhealth/gnuhealth-4.2.1/gnuhealth-setup install
+RUN tar -xf gnuhealth-latest.tar.gz && cd gnuhealth-4.2.1 && ./gnuhealth-setup install
 
 EXPOSE 8000
 ENTRYPOINT ["./home/gnuhealth/gnuhealth-4.2.1/start_gnuhealth.sh"]
