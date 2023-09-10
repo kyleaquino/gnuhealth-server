@@ -1,6 +1,10 @@
 FROM ubuntu:20.04
 
-RUN apt-get update && apt-get install -y python3.11 python3.11-dev python3-pip python3.11-venv
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
+RUN apt-get update
+RUN apt-get install -y apt-get -y install python-setuptools python-dev libldap2-dev \
+    libsasl2-dev git libsasl2-dev libssl-dev python-ldap python-psycopg2 libxml2-dev \
+    libxslt1-dev wget libpq-dev postgresql supervisor python-cracklib nano
+
+RUN easy_install pip
 
 EXPOSE 80
