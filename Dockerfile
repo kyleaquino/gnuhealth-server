@@ -1,7 +1,8 @@
 FROM ubuntu:22.04
 
-# Ubuntu General Packages
 WORKDIR /home
+
+# Ubuntu General Packages
 RUN apt-get update
 RUN apt-get install -y software-properties-common libpq-dev curl wget gcc g++ make
 
@@ -18,4 +19,4 @@ RUN tar -xf tryton-sao-5.0.0.tgz && cd package
 RUN npm install --production --legacy-peer-deps
 
 EXPOSE 80
-CMD ["trytond"]
+ENTRYPOINT ["start.sh"]
