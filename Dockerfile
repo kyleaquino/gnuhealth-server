@@ -1,7 +1,12 @@
 FROM ubuntu:20.04
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && \
+    apt-get install -y \
+    python3.11 \
+    python3.11-dev \
+    python3-pip \
+    python3.11-venv
 
-RUN apt-get install gnuhealth-server
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
+
 EXPOSE 80
-
-CMD ["/bin/bash", "-c", "/usr/local/bin/gnuhealth-server --db-host $POSTGRES_HOST --db-port $POSTGRES_PORT --db-name $POSTGRES_DB --db-user $POSTGRES_USER --db-password $POSTGRES_PASSWORD"]
-
