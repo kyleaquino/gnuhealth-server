@@ -18,4 +18,4 @@ RUN tar -xf tryton-sao-5.0.0.tgz && cd package
 RUN npm install --production --legacy-peer-deps
 
 EXPOSE 80
-CMD ["ls"]
+CMD ["trytond"]
