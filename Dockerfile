@@ -19,5 +19,5 @@ RUN wget https://downloads.tryton.org/5.0/tryton-sao-5.0.0.tgz
 RUN tar -xf tryton-sao-5.0.0.tgz && cd package
 RUN npm install --production --legacy-peer-deps
 
-EXPOSE 80
+EXPOSE 8000
 ENTRYPOINT ["start.sh"]
