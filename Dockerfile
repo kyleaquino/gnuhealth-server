@@ -5,7 +5,8 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV GNUHEALTH_PACKAGE https://ftp.gnu.org/gnu/health/gnuhealth-latest.tar.gz
 ENV GNUHEALTH_SAO_PACKAGE https://downloads.tryton.org/5.0/tryton-sao-5.0.0.tgz
 
-ENV TRYTOND_DATABASE_URI "${GNUHEALTH_POSTGRES_URL}"
+ARG GNUHEALTH_POSTGRES_URL
+ENV TRYTOND_DATABASE_URI ${SETTING_EXTERNAL_HOST:-$GNUHEALTH_POSTGRES_URL}
 ENV TRYTONPASSFILE /home/gnuhealth/.password
 
 RUN useradd --uid 1000 --create-home --home-dir /home/gnuhealth gnuhealth
