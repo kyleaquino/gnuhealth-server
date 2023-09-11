@@ -42,7 +42,7 @@ USER root
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod +x /home/gnuhealth/start_gnuhealth.sh
+RUN chmod +x /start_gnuhealth.sh
 RUN chmod +x /docker-entrypoint.sh
 
 EXPOSE 8000
