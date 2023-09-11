@@ -38,8 +38,6 @@ RUN cd /tmp/gnuhealth && ./gnuhealth-setup install
 USER root
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY trytond.conf /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
-RUN echo "[database]" >> /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
-RUN echo "uri = ${GNUHEALTH_POSTGRES_URL}" >> /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /home/gnuhealth/start_gnuhealth.sh
