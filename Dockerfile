@@ -32,7 +32,7 @@ RUN cp -r /tmp/gnuhealth/package /home/gnuhealth/sao
 RUN cd sao && npm install --production --legacy-peer-deps
 RUN cd /tmp/gnuhealth && ./gnuhealth-setup install && chmod +x /home/gnuhealth/start_gnuhealth.sh
 
-COPY trytond.conf ${GNUHEALTH_DIR}/tryton/server/config/trytond.conf
+COPY trytond.conf /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
 
 USER root
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
