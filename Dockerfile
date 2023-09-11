@@ -18,17 +18,17 @@ RUN apt-get -y install --no-install-recommends software-properties-common libpq-
 # Install Framework Dependencies
 RUN apt-get install -y nodejs npm python3-dev python3-pip python3-cffi
 
-# Install Tryton SAO
-RUN wget -q  --output-document=/tmp/tryton-sao.tgz "${GNUHEALTH_SAO_PACKAGE}" 
-RUN tar -xf tryton-sao.tgz && cd package && npm install --production --legacy-peer-deps
-RUN rm -rf tryton-sao.tgz
-
 # Setup GNUHealth Server
 RUN wget -q  --output-document=/tmp/gnuhealth.tgz "${GNUHEALTH_PACKAGE}" 
-RUN mkdir /tmp/gnuhealth && cd /tmp/gnuhealth && tar xzf /tmp/gnuhealth.tgz --strip-components=1 
+RUN wget -q  --output-document=/tmp/tryton-sao.tgz "${GNUHEALTH_SAO_PACKAGE}" 
+
+RUN mkdir /tmp/gnuhealth 
+RUN cd /tmp/gnuhealth && tar xzf /tmp/gnuhealth.tgz --strip-components=1 
+RUN cd /tmp/gnuhealth && tar xzf /tmp/tryton-sao.tgz
 RUN chown gnuhealth: /tmp/gnuhealth/ -R
 
 USER gnuhealth
+RUN cp /tmp/gnuhealth/package /home/gnuhealth/package && cd package && npm install --production --legacy-peer-deps
 RUN cd /tmp/gnuhealth && ./gnuhealth-setup install && chmod +x /home/gnuhealth/start_gnuhealth.sh
 
 USER root
