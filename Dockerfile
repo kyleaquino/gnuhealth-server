@@ -29,6 +29,7 @@ RUN cd /tmp/gnuhealth && tar xzf /tmp/tryton-sao.tgz
 RUN cp -r /tmp/gnuhealth/package /home/gnuhealth/sao
 
 RUN chown gnuhealth: /tmp/gnuhealth/ -R
+RUN chown gnuhealth: /home/gnuhealth/ -R
 
 USER gnuhealth
 RUN cd sao && npm install --production --legacy-peer-deps
@@ -39,7 +40,6 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY trytond.conf /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
 RUN echo "[database]" >> /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
 RUN echo "uri = ${GNUHEALTH_POSTGRES_URL}" >> /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
-RUN chown gnuhealth: /home/gnuhealth/ -R
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /start_gnuhealth.sh
