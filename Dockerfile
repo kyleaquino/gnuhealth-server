@@ -42,7 +42,7 @@ RUN echo "[database]" >> /home/gnuhealth/gnuhealth/tryton/server/config/trytond.
 RUN echo "uri = ${GNUHEALTH_POSTGRES_URL}" >> /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod +x /start_gnuhealth.sh
+RUN chmod +x /home/gnuhealth/start_gnuhealth.sh
 RUN chmod +x /docker-entrypoint.sh
 
 EXPOSE 8000
