@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV GNUHEALTH_PACKAGE https://ftp.gnu.org/gnu/health/gnuhealth-latest.tar.gz
 ENV GNUHEALTH_SAO_PACKAGE https://downloads.tryton.org/5.0/tryton-sao-5.0.0.tgz
 
-ENV TRYTOND_DATABASE_URI "postgresql://${GNUHEALTH_POSTGRES_USER}:${GNUHEALTH_POSTGRES_PASSWORD}@${GNUHEALTH_POSTGRES_HOST}/${GNUHEALTH_POSTGRES_DB}:5432"
+ENV TRYTOND_DATABASE_URI "${GNUHEALTH_POSTGRES_URL}"
 ENV TRYTONPASSFILE /home/gnuhealth/.password
 
 RUN useradd --uid 1000 --create-home --home-dir /home/gnuhealth gnuhealth
@@ -32,7 +32,7 @@ RUN cp -r /tmp/gnuhealth/package /home/gnuhealth/sao
 RUN cd sao && npm install --production --legacy-peer-deps
 RUN cd /tmp/gnuhealth && ./gnuhealth-setup install && chmod +x /home/gnuhealth/start_gnuhealth.sh
 
-COPY trytond.conf /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
+COPY trytond.conf ${GNUHEALTH_DIR}/tryton/server/config/trytond.conf
 
 USER root
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
