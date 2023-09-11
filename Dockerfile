@@ -27,7 +27,7 @@ RUN mkdir /tmp/gnuhealth
 RUN cd /tmp/gnuhealth && tar xzf /tmp/gnuhealth.tgz --strip-components=1 
 RUN cd /tmp/gnuhealth && tar xzf /tmp/tryton-sao.tgz
 RUN cp -r /tmp/gnuhealth/package /home/gnuhealth/sao
-RUN cd /tmp/gnuhealth && ./gnuhealth-setup install && chmod +x /home/gnuhealth/start_gnuhealth.sh
+RUN cd /tmp/gnuhealth && ./gnuhealth-setup install
 RUN chown gnuhealth: /tmp/gnuhealth/ -R
 
 COPY trytond.conf /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
@@ -42,6 +42,7 @@ USER root
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /home/gnuhealth/start_gnuhealth.sh
 RUN chmod +x /docker-entrypoint.sh
 
 EXPOSE 8000
