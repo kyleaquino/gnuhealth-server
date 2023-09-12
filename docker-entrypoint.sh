@@ -1,11 +1,9 @@
 #!/bin/bash
 
-if [ ! -f .env ]
+if [ ! -f /etc/secrets/.env ]
 then
-  export $(cat .env | xargs)
+  export $(cat /etc/secrets/.env | xargs)
 fi
-
-mv -f $HOME/trytond.conf $HOME/gnuhealth/tryton/server/config/trytond.conf
 
 echo "" >> $HOME/gnuhealth/tryton/server/config/trytond.conf
 echo "[database]" >> $HOME/gnuhealth/tryton/server/config/trytond.conf
