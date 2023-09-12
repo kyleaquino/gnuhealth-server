@@ -3,9 +3,7 @@ FROM ubuntu:22.04 as builder
 # Create a user for GNUHealth
 RUN useradd --uid 1000 --create-home --home-dir /home/gnuhealth gnuhealth
 
-ARG GNUHEALTH_POSTGRES_URL
-ENV GNUHEALTH_POSTGRES_URL="${GNUHEALTH_POSTGRES_URL}" \
-    GNUHEALTH_PACKAGE="https://ftp.gnu.org/gnu/health/gnuhealth-latest.tar.gz" \
+ENV GNUHEALTH_PACKAGE="https://ftp.gnu.org/gnu/health/gnuhealth-latest.tar.gz" \
     GNUHEALTH_SAO_PACKAGE="https://downloads.tryton.org/5.0/tryton-sao-5.0.0.tgz" \
     DEBIAN_FRONTEND=noninteractive
 
@@ -60,6 +58,10 @@ RUN chmod +x /home/gnuhealth/start_gnuhealth.sh /entrypoint.sh
 EXPOSE 8000
 
 USER gnuhealth
+
+ARG GNUHEALTH_POSTGRES_URL
+ENV GNUHEALTH_POSTGRES_URL="${GNUHEALTH_POSTGRES_URL}" 
+
 WORKDIR /home/gnuhealth
 COPY trytond.conf trytond.conf
     
