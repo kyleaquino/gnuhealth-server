@@ -35,7 +35,6 @@ RUN cd /tmp/gnuhealth && ./gnuhealth-setup install
 
 USER root
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN cp -r /etc/secrets/.env /home/gnuhealth/.env
 
 COPY trytond.conf home/gnuhealth/trytond.conf
 COPY docker-entrypoint.sh /docker-entrypoint.sh
