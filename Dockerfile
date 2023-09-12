@@ -5,7 +5,7 @@ ENV GNUHEALTH_PACKAGE https://ftp.gnu.org/gnu/health/gnuhealth-latest.tar.gz
 ENV GNUHEALTH_SAO_PACKAGE https://downloads.tryton.org/5.0/tryton-sao-5.0.0.tgz
 
 RUN useradd --uid 1000 --create-home --home-dir /home/gnuhealth gnuhealth
-RUN --mount=type=secret,uid=100,id=_env,dst=/etc/secrets/.env export $(cat /etc/secrets/.env | xargs)
+RUN --mount=type=secret,uid=1000,id=_env,dst=/etc/secrets/.env export $(cat /etc/secrets/.env | xargs)
 
 ENV GNUHEALTH_POSTGRES_URL "${GNUHEALTH_POSTGRES_URL}"
 
