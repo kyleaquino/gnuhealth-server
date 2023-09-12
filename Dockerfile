@@ -28,21 +28,20 @@ RUN cd /tmp/gnuhealth && tar xzf /tmp/gnuhealth.tgz --strip-components=1
 RUN cd /tmp/gnuhealth && tar xzf /tmp/tryton-sao.tgz
 RUN cp -r /tmp/gnuhealth/package /home/gnuhealth/sao
 
-COPY trytond.conf /tmp/trytond.conf
-
-RUN chown gnuhealth /tmp/trytond.conf
 RUN chown gnuhealth: /tmp/gnuhealth/ -R
 RUN chown gnuhealth: /home/gnuhealth/ -R
 
 USER gnuhealth
 RUN cd sao && npm install --production --legacy-peer-deps
 RUN cd /tmp/gnuhealth && ./gnuhealth-setup install
-RUN echo /tmp/trytond.conf > $TRYTOND_CONFIG 
 
 USER root
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+COPY trytond.conf $TRYTOND_CONFIG 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
+
+RUN chown gnuhealth /tmp/trytond.conf
 RUN chmod +x /home/gnuhealth/start_gnuhealth.sh
 RUN chmod +x /docker-entrypoint.sh
 
