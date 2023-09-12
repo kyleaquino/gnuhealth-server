@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if [ ! -f /etc/secrets/.env ]
-then
-  export $(cat /etc/secrets/.env | xargs)
-fi
-
 mv -f trytond.conf $TRYTOND_CONFIG 
 
 echo "" >> $TRYTOND_CONFIG
