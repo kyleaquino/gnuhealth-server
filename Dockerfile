@@ -36,7 +36,7 @@ RUN chown gnuhealth: /home/gnuhealth/ -R
 
 USER gnuhealth
 RUN cd sao && npm install --production --legacy-peer-deps
-RUN cd /tmp/gnuhealth && ./gnuhealth-setup
+RUN cd /tmp/gnuhealth && ./gnuhealth-setup install
 RUN echo /tmp/trytond.conf > $TRYTOND_CONFIG 
 
 USER root
