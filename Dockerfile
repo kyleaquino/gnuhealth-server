@@ -5,7 +5,7 @@ ENV GNUHEALTH_PACKAGE https://ftp.gnu.org/gnu/health/gnuhealth-latest.tar.gz
 ENV GNUHEALTH_SAO_PACKAGE https://downloads.tryton.org/5.0/tryton-sao-5.0.0.tgz
 
 RUN useradd --uid 1000 --create-home --home-dir /home/gnuhealth gnuhealth
-RUN --mount=type=secret,uid=100,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env > /home/gnuhealth/.env
+RUN --mount=type=secret,uid=100,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env
 
 WORKDIR /home/gnuhealth
 
@@ -35,10 +35,12 @@ RUN cd /tmp/gnuhealth && ./gnuhealth-setup install
 USER root
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY trytond.conf /home/gnuhealth/trytond.conf
+COPY trytond.conf $HOME/gnuhealth/tryton/server/config/trytond.conf
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 RUN chown gnuhealth: /home/gnuhealth/ -R
+RUN chown gnuhealth: /home/secrets/ -R
+
 RUN chmod +x /home/gnuhealth/start_gnuhealth.sh
 RUN chmod +x /docker-entrypoint.sh
 
