@@ -2,7 +2,7 @@
 
 if [ ! -f .env ]
 then
-  export $(cat .env | xargs)
+  export $(cat home/gnuhealth/.env | xargs)
 fi
 
 mv -f trytond.conf $TRYTOND_CONFIG 
