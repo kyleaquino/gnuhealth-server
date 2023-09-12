@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if [ ! -f .env ]
-then
-  export $(cat .env | xargs)
-fi
-
 echo "" >> $TRYTOND_CONFIG
 echo "[database]" >>  $TRYTOND_CONFIG
 echo "uri = ${GNUHEALTH_POSTGRES_URL}" >> $TRYTOND_CONFIG
