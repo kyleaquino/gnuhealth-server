@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [ ! -f .env ]
+if [ ! -f /etc/secrets/.env ]
 then
-  export $(cat /home/gnuhealth/.env | xargs)
+  export $(cat /etc/secrets/.env | xargs)
 fi
 
 mv -f trytond.conf $TRYTOND_CONFIG 
