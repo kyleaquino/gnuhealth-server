@@ -39,7 +39,7 @@ COPY trytond.conf $HOME/gnuhealth/tryton/server/config/trytond.conf
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 RUN chown gnuhealth: /home/gnuhealth/ -R
-RUN chown gnuhealth: /home/secrets/ -R
+RUN chown gnuhealth: /etc/secrets/ -R
 
 RUN chmod +x /home/gnuhealth/start_gnuhealth.sh
 RUN chmod +x /docker-entrypoint.sh
