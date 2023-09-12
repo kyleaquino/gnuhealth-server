@@ -5,7 +5,7 @@ ENV GNUHEALTH_PACKAGE https://ftp.gnu.org/gnu/health/gnuhealth-latest.tar.gz
 ENV GNUHEALTH_SAO_PACKAGE https://downloads.tryton.org/5.0/tryton-sao-5.0.0.tgz
 
 RUN useradd --uid 1000 --create-home --home-dir /home/gnuhealth gnuhealth
-RUN --mount=type=secret,id=_env,dst=.env export $(cat .env | xargs)
+RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env export $(grep -v '^#' /etc/secrets/.env | xargs)
 
 ENV GNUHEALTH_POSTGRES_URL $GNUHEALTH_POSTGRES_URL
 
@@ -16,7 +16,7 @@ RUN apt-get update
 RUN apt-get -y install --no-install-recommends software-properties-common libpq-dev curl wget gcc g++ make git nano vim patch
 
 # Install Framework Dependencies
-RUN apt-get install -y nodejs npm python3-dev python3-pip python3-cffi
+RUN apt-get install -y nodejs npm python3 python3-dev python3-pip python3-cffi
 
 # Setup GNUHealth Server
 RUN wget -q  --output-document=/tmp/gnuhealth.tgz "${GNUHEALTH_PACKAGE}" 
