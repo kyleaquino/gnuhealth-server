@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ ! -f .env ]
+then
+  export $(cat .env | xargs)
+fi
+
 mv -f trytond.conf $TRYTOND_CONFIG 
 
 echo "" >> $TRYTOND_CONFIG
