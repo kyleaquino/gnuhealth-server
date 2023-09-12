@@ -5,7 +5,7 @@ then
   export $(cat .env | xargs)
 fi
 
-mv -f trytond.conf $HOME/gnuhealth/tryton/server/config/trytond.conf
+mv -f $HOME/trytond.conf $HOME/gnuhealth/tryton/server/config/trytond.conf
 
 echo "" >> $HOME/gnuhealth/tryton/server/config/trytond.conf
 echo "[database]" >>  $HOME/gnuhealth/tryton/server/config/trytond.conf
