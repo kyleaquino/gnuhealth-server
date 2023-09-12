@@ -1,17 +1,14 @@
 FROM ubuntu:22.04 as builder
 
-ENV DEBIAN_FRONTEND noninteractive
-ENV GNUHEALTH_PACKAGE https://ftp.gnu.org/gnu/health/gnuhealth-latest.tar.gz
-ENV GNUHEALTH_SAO_PACKAGE https://downloads.tryton.org/5.0/tryton-sao-5.0.0.tgz
-
 # Create a user for GNUHealth
 RUN useradd --uid 1000 --create-home --home-dir /home/gnuhealth gnuhealth
 RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env
 
 ARG GNUHEALTH_POSTGRES_URL
 ENV GNUHEALTH_POSTGRES_URL="${GNUHEALTH_POSTGRES_URL}"
-
-WORKDIR /home/gnuhealth
+ENV GNUHEALTH_PACKAGE https://ftp.gnu.org/gnu/health/gnuhealth-latest.tar.gz
+ENV GNUHEALTH_SAO_PACKAGE https://downloads.tryton.org/5.0/tryton-sao-5.0.0.tgz
+ENV DEBIAN_FRONTEND noninteractive
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -61,7 +58,7 @@ RUN ./gnuhealth-setup install
 USER root
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY trytond.conf trytond.conf
+COPY trytond.conf /home/gnuhealth/trytond.conf
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 RUN chown gnuhealth: /home/gnuhealth/ -R && \
