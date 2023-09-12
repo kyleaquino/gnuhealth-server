@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mv -f trytond.conf $TRYTOND_CONFIG 
+
 echo "" >> $TRYTOND_CONFIG
 echo "[database]" >>  $TRYTOND_CONFIG
 echo "uri = ${GNUHEALTH_POSTGRES_URL}" >> $TRYTOND_CONFIG
