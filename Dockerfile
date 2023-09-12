@@ -4,8 +4,9 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV GNUHEALTH_PACKAGE https://ftp.gnu.org/gnu/health/gnuhealth-latest.tar.gz
 ENV GNUHEALTH_SAO_PACKAGE https://downloads.tryton.org/5.0/tryton-sao-5.0.0.tgz
 
-RUN --mount=type=secret,id=_env,dst=/.env cat /.env
 RUN useradd --uid 1000 --create-home --home-dir /home/gnuhealth gnuhealth
+RUN --mount=type=secret,id=_env,dst=/home/gnuhealth/.env cat /home/gnuhealth/.env
+RUN export $(cat /home/gnuhealth/.env | xargs)
 
 WORKDIR /home/gnuhealth
 
@@ -38,7 +39,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY trytond.conf $TRYTOND_CONFIG 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
-RUN chown gnuhealth: /home/gnuhealth/gnuhealth -R
+RUN chown gnuhealth: /home/gnuhealth -R
 RUN chmod +x /home/gnuhealth/start_gnuhealth.sh
 RUN chmod +x /docker-entrypoint.sh
 
