@@ -52,12 +52,15 @@ RUN ./gnuhealth-setup install
 # Cleanup and setup configurations
 USER root
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+WORKDIR /
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /home/gnuhealth/start_gnuhealth.sh /entrypoint.sh
+
 EXPOSE 8000
 
 USER gnuhealth
-WORKDIR /
-COPY trytond.conf /home/gnuhealth/trytond.conf
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /home/gnuhealth/start_gnuhealth.sh /entrypoint.sh
+WORKDIR /home/gnuhealth
+COPY trytond.conf trytond.conf
     
 ENTRYPOINT [ "/entrypoint.sh" ]
