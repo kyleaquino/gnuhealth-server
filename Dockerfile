@@ -58,13 +58,14 @@ RUN ./gnuhealth-setup install
 USER root
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+WORKDIR /
 COPY trytond.conf /home/gnuhealth/trytond.conf
-COPY docker-entrypoint.sh /docker-entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 
 RUN chown gnuhealth: /home/gnuhealth/ -R && \
-    chmod +x /home/gnuhealth/start_gnuhealth.sh /docker-entrypoint.sh
+    chmod +x /home/gnuhealth/start_gnuhealth.sh /entrypoint.sh
 
 EXPOSE 8000
 
 USER gnuhealth
-ENTRYPOINT [ "/docker-entrypoint.sh" ]
+ENTRYPOINT [ "/entrypoint.sh" ]
