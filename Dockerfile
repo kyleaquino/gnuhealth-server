@@ -16,7 +16,7 @@ RUN apt-get update
 RUN apt-get -y install --no-install-recommends software-properties-common libpq-dev curl wget gcc g++ make git nano vim patch
 
 # Install Framework Dependencies
-RUN apt-get install -y nodejs npm python3 python3-dev python3-pip python3-cffi
+RUN apt-get install -y nodejs npm python3 python3-dev python3-pip
 
 # Setup GNUHealth Server
 RUN wget -q  --output-document=/tmp/gnuhealth.tgz "${GNUHEALTH_PACKAGE}" 
