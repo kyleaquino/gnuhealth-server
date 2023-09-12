@@ -38,6 +38,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY trytond.conf $HOME/gnuhealth/tryton/server/config/trytond.conf
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
+RUN mkdir /etc/secrets 
 RUN chown gnuhealth: /home/gnuhealth/ -R
 RUN chown gnuhealth: /etc/secrets/ -R
 
