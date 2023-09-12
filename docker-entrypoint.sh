@@ -1,13 +1,13 @@
 #!/bin/bash
 
-mv -f trytond.conf $TRYTOND_CONFIG 
+mv -f trytond.conf $HOME/gnuhealth/tryton/server/config/trytond.conf
 
-echo "" >> $TRYTOND_CONFIG
-echo "[database]" >>  $TRYTOND_CONFIG
-echo "uri = ${GNUHEALTH_POSTGRES_URL}" >> $TRYTOND_CONFIG
+echo "" >> $HOME/gnuhealth/tryton/server/config/trytond.conf
+echo "[database]" >>  $HOME/gnuhealth/tryton/server/config/trytond.conf
+echo "uri = ${GNUHEALTH_POSTGRES_URL}" >> $HOME/gnuhealth/tryton/server/config/trytond.conf
 
-cd /home/gnuhealth/gnuhealth/tryton/server/trytond-6.0.35/bin
-python ./trytond-admin --all --database=gnuhealth -c $TRYTOND_CONFIG
+cd $HOME/gnuhealth/tryton/server/trytond-6.0.35/bin
+python3 ./trytond-admin --all --database=gnuhealth -c $TRYTOND_CONFIG
 
-cd /home/gnuhealth
+cd $HOME
 ./start_gnuhealth.sh
