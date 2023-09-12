@@ -1,15 +1,12 @@
 FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND noninteractive
-
 ENV GNUHEALTH_PACKAGE https://ftp.gnu.org/gnu/health/gnuhealth-latest.tar.gz
 ENV GNUHEALTH_SAO_PACKAGE https://downloads.tryton.org/5.0/tryton-sao-5.0.0.tgz
 
-ARG GNUHEALTH_POSTGRES_URL
-ENV TRYTOND_DATABASE_URI ${SETTING_EXTERNAL_HOST:-$GNUHEALTH_POSTGRES_URL}
-ENV TRYTONPASSFILE /home/gnuhealth/.password
-
+RUN --mount=type=secret,id=_env,dst=/.env cat /.env
 RUN useradd --uid 1000 --create-home --home-dir /home/gnuhealth gnuhealth
+
 WORKDIR /home/gnuhealth
 
 # Ubuntu General Dependencies
