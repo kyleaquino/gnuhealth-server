@@ -39,6 +39,9 @@ RUN wget -q -O gnuhealth.tgz "${GNUHEALTH_PACKAGE}" && \
 # Switch to the gnuhealth user
 USER gnuhealth
 
+ARG GNUHEALTH_POSTGRES_URL
+ENV GNUHEALTH_POSTGRES_URL="${GNUHEALTH_POSTGRES_URL}" 
+
 # Install SAO dependencies
 WORKDIR /home/gnuhealth/sao
 RUN npm install --production --legacy-peer-deps
@@ -62,11 +65,11 @@ RUN chown -R gnuhealth: /home/gnuhealth/gnuhealth/tryton/server/config/trytond.c
 RUN echo "# Add GNUHealth Commands to PATH" >> $HOME/.bashrc \
     echo "export PATH='$HOME/gnuhealth/tryton/server/trytond-6.0.35/bin/:$PATH'" >> $HOME/.bashrc
 
+RUN echo "" >> $HOME/gnuhealth/tryton/server/config/trytond.conf \
+    echo "[database]" >> $HOME/gnuhealth/tryton/server/config/trytond.conf \
+    echo "uri = $GNUHEALTH_POSTGRES_URL" >> $HOME/gnuhealth/tryton/server/config/trytond.conf
+
 EXPOSE 8000
 
 USER gnuhealth
-
-ARG GNUHEALTH_POSTGRES_URL
-ENV GNUHEALTH_POSTGRES_URL="${GNUHEALTH_POSTGRES_URL}" 
-    
 ENTRYPOINT [ "/entrypoint.sh" ]
