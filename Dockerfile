@@ -55,14 +55,15 @@ WORKDIR /
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /home/gnuhealth/start_gnuhealth.sh /entrypoint.sh
 
+WORKDIR /home/gnuhealth
+COPY trytond.conf /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
+RUN chmod 777 /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
+
 EXPOSE 8000
 
 USER gnuhealth
 
 ARG GNUHEALTH_POSTGRES_URL
 ENV GNUHEALTH_POSTGRES_URL="${GNUHEALTH_POSTGRES_URL}" 
-
-WORKDIR /home/gnuhealth
-COPY trytond.conf /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
     
 ENTRYPOINT [ "/entrypoint.sh" ]
