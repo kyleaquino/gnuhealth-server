@@ -62,14 +62,15 @@ RUN chmod +x /home/gnuhealth/start_gnuhealth.sh /entrypoint.sh
 
 WORKDIR /home/gnuhealth
 RUN chown -R gnuhealth: /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
-RUN echo "# Add GNUHealth Commands to PATH" >> $HOME/.bashrc \
-    echo "export PATH='$HOME/gnuhealth/tryton/server/trytond-6.0.35/bin/:$PATH'" >> $HOME/.bashrc
-
-RUN echo "" >> $HOME/gnuhealth/tryton/server/config/trytond.conf \
-    echo "[database]" >> $HOME/gnuhealth/tryton/server/config/trytond.conf \
-    echo "uri = $GNUHEALTH_POSTGRES_URL" >> $HOME/gnuhealth/tryton/server/config/trytond.conf
 
 EXPOSE 8000
 
 USER gnuhealth
+RUN echo "# Add GNUHealth Commands to PATH" >> $HOME/.bashrc \
+    echo "export PATH='$HOME/gnuhealth/tryton/server/trytond-6.0.35/bin/:$PATH'" >> $HOME/.bashrc
+
+RUN echo "" >> /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf \
+    echo "[database]" >> /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf \
+    echo "uri = $GNUHEALTH_POSTGRES_URL" >> /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
+
 ENTRYPOINT [ "/entrypoint.sh" ]
