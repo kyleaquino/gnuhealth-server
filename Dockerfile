@@ -58,7 +58,7 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /home/gnuhealth/start_gnuhealth.sh /entrypoint.sh
 
 WORKDIR /home/gnuhealth
-RUN chown -R gnuhealth: /home/gnuhealth/gnuhealth/tryton/server/config/
+RUN chown -R gnuhealth: /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
 RUN echo "# Add GNUHealth Commands to PATH" >> $HOME/.bashrc \
     echo "export PATH='$HOME/gnuhealth/tryton/server/trytond-6.0.35/bin/:$PATH'" >> $HOME/.bashrc
 
