@@ -46,6 +46,7 @@ RUN npm install --production --legacy-peer-deps
 # Install GNUHealth application
 WORKDIR /tmp/gnuhealth
 RUN ./gnuhealth-setup install
+
 COPY trytond.conf /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
 
 # Cleanup and setup configurations
