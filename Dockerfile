@@ -63,6 +63,6 @@ ARG GNUHEALTH_POSTGRES_URL
 ENV GNUHEALTH_POSTGRES_URL="${GNUHEALTH_POSTGRES_URL}" 
 
 WORKDIR /home/gnuhealth
-COPY trytond.conf trytond.conf
+COPY trytond.conf /home/gnuhealth/gnuhealth/tryton/sever/config/trytond.conf
     
 ENTRYPOINT [ "/entrypoint.sh" ]
