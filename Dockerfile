@@ -46,6 +46,7 @@ RUN npm install --production --legacy-peer-deps
 # Install GNUHealth application
 WORKDIR /tmp/gnuhealth
 RUN ./gnuhealth-setup install
+COPY trytond.conf /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
 
 # Cleanup and setup configurations
 USER root
@@ -56,8 +57,7 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /home/gnuhealth/start_gnuhealth.sh /entrypoint.sh
 
 WORKDIR /home/gnuhealth
-COPY trytond.conf /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
-RUN chmod 777 /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf
+RUN chown -R gnuhealth: /home/gnuhealth/gnuhealth/tryton/server/config/
 
 EXPOSE 8000
 
