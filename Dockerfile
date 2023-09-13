@@ -69,8 +69,7 @@ EXPOSE 8000
 USER gnuhealth
 RUN /bin/echo "# Add GNUHealth Commands to PATH" >> $HOME/.bashrc && \
     /bin/echo "export PATH='$HOME/.local/bin:$PATH'" >> $HOME/.bashrc && \
-    /bin/echo "export PATH='$HOME/gnuhealth/tryton/server/trytond-6.0.35/bin/:$PATH'" >> $HOME/.bashrc  && \
-    source $HOME/.bashrc 
+    /bin/echo "export PATH='$HOME/gnuhealth/tryton/server/trytond-6.0.35/bin/:$PATH'" >> $HOME/.bashrc
 
 RUN /bin/echo "" >> /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf && \
     /bin/echo "[database]" >> /home/gnuhealth/gnuhealth/tryton/server/config/trytond.conf && \
