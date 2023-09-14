@@ -9,7 +9,6 @@ ENV GNUHEALTH_PACKAGE="https://ftp.gnu.org/gnu/health/gnuhealth-latest.tar.gz" \
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    software-properties-common \
     libpq-dev \
     curl \
     wget \
