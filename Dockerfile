@@ -4,7 +4,7 @@ FROM ubuntu:22.04 as builder
 RUN useradd --uid 1000 --create-home --home-dir /home/gnuhealth gnuhealth
 
 ENV GNUHEALTH_PACKAGE="https://ftp.gnu.org/gnu/health/gnuhealth-latest.tar.gz" \
-    GNUHEALTH_SAO_PACKAGE="https://downloads.tryton.org/5.8/tryton-sao-last.tgz" \
+    GNUHEALTH_SAO_PACKAGE="https://downloads.tryton.org/6.0/tryton-sao-last.tgz" \
     DEBIAN_FRONTEND=noninteractive
 
 # Install system dependencies
