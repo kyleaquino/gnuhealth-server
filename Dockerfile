@@ -24,8 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     npm \
     python3 \
     python3-dev \
-    python3-pip \
-    python3-psycopg2
+    python3-pip
 
 # Download and extract GNUHealth and Tryton SAO packages
 WORKDIR /tmp
