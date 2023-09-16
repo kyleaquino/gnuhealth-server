@@ -11,6 +11,7 @@ ENV GNUHEALTH_PACKAGE="https://ftp.gnu.org/gnu/health/gnuhealth-latest.tar.gz" \
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
     libmagic1 \
+    libreoffice-common \
     curl \
     wget \
     gcc \
